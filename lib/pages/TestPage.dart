@@ -53,10 +53,6 @@ class TestPage extends StatelessWidget{
                     child: Center(
                         child: Text(
                           "Start".toUpperCase(),
-                          // style: TextStyle(
-                          //     fontSize: 34.sp,
-                          //     fontWeight: FontWeight.w700
-                          // ),
                           style: GoogleFonts.openSans(
                             textStyle: TextStyle(
                                 fontSize: 34.sp,

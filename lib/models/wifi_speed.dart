@@ -110,6 +110,10 @@ class WifiSpeedProvider{
     return await db.delete(tableWifi, where: 'id = ?', whereArgs: [id]);
   }
 
+  Future<void> deleteAll() async {
+    return await db.delete(tableWifi);
+  }
+
   Future<int> update(WifiSpeed wifiSpeed) async {
     return await db.update(tableWifi, wifiSpeed.toMap(),
         where: 'id = ?', whereArgs: [wifiSpeed.id]);

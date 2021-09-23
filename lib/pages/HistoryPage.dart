@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wifi_speed_analyzer/controllers/history_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wifi_speed_analyzer/pages/components/custom_dialog.dart';
 import 'package:wifi_speed_analyzer/theme/color_theme.dart';
+import 'package:intl/intl.dart';
 
 class HistoryPage extends StatelessWidget{
   @override
@@ -25,6 +27,26 @@ class HistoryPage extends StatelessWidget{
           ),
         ),
         backgroundColor: backgroundColor,
+        actions: [
+          IconButton(
+            onPressed: (){
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      CustomDialog(
+                        action: (){
+                          historyController.deleteAll();
+                        },
+                      )
+              );
+            },
+            icon: FaIcon(
+              FontAwesomeIcons.trash,
+              color: Color(0xff4A5967),
+              // #5B5B5B
+            ),
+          ),
+        ],
       ),
       body: Obx(() => SingleChildScrollView(
         child: Column(
@@ -40,7 +62,7 @@ class HistoryPage extends StatelessWidget{
                   decoration: BoxDecoration(
                       color: Color(0xff181818),
                       borderRadius: BorderRadius.circular(8.sp),
-                      border: Border.all(color: Colors.blueAccent)
+                      // border: Border.all(color: Colors.blueAccent)
                   ),
                   child: Column(
                     children: [
@@ -53,8 +75,8 @@ class HistoryPage extends StatelessWidget{
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('Date'.toUpperCase()),
-                                Text(wifiSpeed.createdAt.toIso8601String()),
-                                Text(''),
+                                Text(DateFormat('dd/MM/yyyy').format(wifiSpeed.createdAt)),
+                                Text(DateFormat('HH:mm').format(wifiSpeed.createdAt)),
                               ],
                             ),
                             Column(

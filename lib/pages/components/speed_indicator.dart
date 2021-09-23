@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:internet_speed_test/callbacks_enum.dart';
 import 'package:wifi_speed_analyzer/controllers/test_controller.dart';
 import 'package:wifi_speed_analyzer/pages/TestResultPage.dart';
+import 'package:wifi_speed_analyzer/pages/components/draw_points.dart';
 import 'package:wifi_speed_analyzer/pages/components/speedometer.dart';
 import 'package:internet_speed_test/internet_speed_test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,6 +23,9 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
   final RxDouble speed = 0.0.obs;
   final RxString status = 'download'.obs;
 
+  RxList<Offset> downloadSpeedPoints = <Offset>[].obs;
+  RxList<Offset> uploadSpeedPoints = <Offset>[].obs;
+
   void startDownloadTesting(){
     internetSpeedTest.startDownloadTesting(
       onDone: (double transferRate, SpeedUnit unit) {
@@ -35,6 +39,7 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
         print(
             'the transfer rate $transferRate, the percent $percent');
         speed(transferRate);
+        downloadSpeedPoints.add(Offset(percent, transferRate));
         // TODO: Change UI
       },
       onError: (String errorMessage, String speedTestError) {
@@ -51,11 +56,15 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
         testController.uploadSpeed(transferRate);
         speed(0.0);
         testController.isPressed(false);
+        status('');
+        uploadSpeedPoints([]);
+        downloadSpeedPoints([]);
         Get.to(() => TestResultPage());
       },
       onProgress: (double percent, double transferRate, SpeedUnit unit) {
         print('the transfer rate $transferRate, the percent $percent');
         speed(transferRate);
+        uploadSpeedPoints.add(Offset(percent, transferRate));
       },
       onError: (String errorMessage, String speedTestError) {
         // TODO: Show toast error
@@ -116,29 +125,43 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Text(
-                      testController.downloadSpeed.value.toStringAsFixed(2),
-                      style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            fontSize: 30.sp,
-                            fontWeight: FontWeight.w600
+                Container(
+                  height: 100.h,
+                  // width: 100,
+                  child: AnimatedSwitcher(
+                    duration: Duration(milliseconds: 300),
+                    child: status.value == 'download'
+                    ? CustomPaint(
+                        size: Size(100, 150),
+                        painter: MyPainter(
+                            points: downloadSpeedPoints
+                        )
+                    )
+                    : Row(
+                      children: [
+                        Text(
+                          testController.downloadSpeed.value.toStringAsFixed(2),
+                          style: GoogleFonts.openSans(
+                            textStyle: TextStyle(
+                                fontSize: 30.sp,
+                                fontWeight: FontWeight.w600
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(width: 10.w,),
-                    Text(
-                      'Mbps',
-                      style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w400,
-                            color: mainColor
+                        SizedBox(width: 10.w,),
+                        Text(
+                          'Mbps',
+                          style: GoogleFonts.openSans(
+                            textStyle: TextStyle(
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w400,
+                                color: mainColor
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 )
               ],
             ),
@@ -165,29 +188,43 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Text(
-                      testController.uploadSpeed.value.toStringAsFixed(2),
-                      style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            fontSize: 30.sp,
-                            fontWeight: FontWeight.w600
+                Container(
+                  height: 100.h,
+                  // width: 100,
+                  child: AnimatedSwitcher(
+                    duration: Duration(milliseconds: 300),
+                    child: status.value == 'upload'
+                    ? CustomPaint(
+                        size: Size(100, 150),
+                        painter: MyPainter(
+                            points: uploadSpeedPoints
+                        )
+                    )
+                    : Row(
+                      children: [
+                        Text(
+                          testController.downloadSpeed.value.toStringAsFixed(2),
+                          style: GoogleFonts.openSans(
+                            textStyle: TextStyle(
+                                fontSize: 30.sp,
+                                fontWeight: FontWeight.w600
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(width: 10.w,),
-                    Text(
-                      'Mbps',
-                      style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w400,
-                            color: mainColor
+                        SizedBox(width: 10.w,),
+                        Text(
+                          'Mbps',
+                          style: GoogleFonts.openSans(
+                            textStyle: TextStyle(
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w400,
+                                color: mainColor
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 )
               ],
             ),

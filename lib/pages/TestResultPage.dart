@@ -44,110 +44,123 @@ class TestResultPage extends StatelessWidget{
         ),
       ),
       body: Container(
+        padding: EdgeInsets.all(18.sp),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Download'.toUpperCase(),
-                          style: GoogleFonts.openSans(
-                            textStyle: TextStyle(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w400,
-                                color: mainColor1
+            Container(
+              decoration: BoxDecoration(
+                color: Color(0xff181818),
+                borderRadius: BorderRadius.circular(10.sp),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.3),
+                    offset: Offset(12, 22),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Download'.toUpperCase(),
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: mainColor1
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 10.w,),
-                        FaIcon(
-                          FontAwesomeIcons.chevronDown,
-                          color: mainColor1,
-                          // #5B5B5B
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          testController.downloadSpeed.value.toStringAsFixed(2),
-                          style: GoogleFonts.openSans(
-                            textStyle: TextStyle(
-                                fontSize: 30.sp,
-                                fontWeight: FontWeight.w600
+                          SizedBox(width: 10.w,),
+                          FaIcon(
+                            FontAwesomeIcons.chevronDown,
+                            color: mainColor1,
+                            // #5B5B5B
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            testController.downloadSpeed.value.toStringAsFixed(2),
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: 30.sp,
+                                  fontWeight: FontWeight.w600
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 10.w,),
-                        Text(
-                          'Mbps',
-                          style: GoogleFonts.openSans(
-                            textStyle: TextStyle(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w400,
-                                color: mainColor
+                          SizedBox(width: 10.w,),
+                          Text(
+                            'Mbps',
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: mainColor
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Upload'.toUpperCase(),
-                          style: GoogleFonts.openSans(
-                            textStyle: TextStyle(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w400,
-                                color: mainColor1
+                        ],
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Upload'.toUpperCase(),
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: mainColor1
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 10.w,),
-                        FaIcon(
-                          FontAwesomeIcons.chevronUp,
-                          color: mainColor1,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          testController.uploadSpeed.value.toStringAsFixed(2),
-                          style: GoogleFonts.openSans(
-                            textStyle: TextStyle(
-                                fontSize: 30.sp,
-                                fontWeight: FontWeight.w600
+                          SizedBox(width: 10.w,),
+                          FaIcon(
+                            FontAwesomeIcons.chevronUp,
+                            color: mainColor1,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            testController.uploadSpeed.value.toStringAsFixed(2),
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: 30.sp,
+                                  fontWeight: FontWeight.w600
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 10.w,),
-                        Text(
-                          'Mbps',
-                          style: GoogleFonts.openSans(
-                            textStyle: TextStyle(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w400,
-                                color: mainColor
+                          SizedBox(width: 10.w,),
+                          Text(
+                            'Mbps',
+                            style: GoogleFonts.openSans(
+                              textStyle: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: mainColor
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ],
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
