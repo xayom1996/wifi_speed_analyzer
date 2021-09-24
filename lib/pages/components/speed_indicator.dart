@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:internet_speed_test/callbacks_enum.dart';
 import 'package:wifi_speed_analyzer/controllers/test_controller.dart';
+import 'package:wifi_speed_analyzer/pages/TestPage.dart';
 import 'package:wifi_speed_analyzer/pages/TestResultPage.dart';
 import 'package:wifi_speed_analyzer/pages/components/draw_points.dart';
 import 'package:wifi_speed_analyzer/pages/components/speedometer.dart';
@@ -59,7 +60,8 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
         status('');
         uploadSpeedPoints([]);
         downloadSpeedPoints([]);
-        Get.to(() => TestResultPage());
+        // Get.to(() => TestResultPage());
+        Navigator.pushNamed(context, TestRoutes.ResultPage);
       },
       onProgress: (double percent, double transferRate, SpeedUnit unit) {
         print('the transfer rate $transferRate, the percent $percent');

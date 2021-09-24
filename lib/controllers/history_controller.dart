@@ -77,6 +77,15 @@ class HistoryController extends GetxController{
     }
   }
 
+  void delete(WifiSpeed wifiSpeed) async {
+    try {
+      await wifiSpeedProvider.delete(wifiSpeed.id);
+      wifiSpeeds.remove(wifiSpeed);
+    }catch(e){
+
+    }
+  }
+
   Future<dynamic> getWifiInfo(String ipAddress) async {
     final response = await http.get(Uri.parse('http://ip-api.com/json/$ipAddress'));
 

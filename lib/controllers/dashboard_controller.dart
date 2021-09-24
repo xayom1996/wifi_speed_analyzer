@@ -14,8 +14,8 @@ class DashboardController extends GetxController {
   @override
   void onInit(){
     pages = [
-      TestPage(),
-      HistoryPage(),
+      TestNavigator(),
+      HistoryNavigator(),
       Container(),
       Container(),
     ];

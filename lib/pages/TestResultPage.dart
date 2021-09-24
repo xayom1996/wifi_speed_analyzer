@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wifi_speed_analyzer/controllers/history_controller.dart';
 import 'package:wifi_speed_analyzer/controllers/test_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wifi_speed_analyzer/pages/TestPage.dart';
 import 'package:wifi_speed_analyzer/theme/color_theme.dart';
 
 class TestResultPage extends StatelessWidget{
@@ -34,7 +35,7 @@ class TestResultPage extends StatelessWidget{
           onPressed: (){
             testController.uploadSpeed(0.0);
             testController.downloadSpeed(0.0);
-            Get.back();
+            Navigator.pop(context);
           },
           icon: FaIcon(
             FontAwesomeIcons.chevronLeft,

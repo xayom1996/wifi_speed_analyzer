@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:wifi_speed_analyzer/controllers/dashboard_controller.dart';
@@ -59,19 +60,19 @@ class DashboardPage extends StatelessWidget {
       bottomNavigationBar: MyNavBar(
           items: [
             {
-              'faicon': FontAwesomeIcons.wifi,
+              'iconPath': 'assets/icons/wifi.svg',
               'title': 'Test',
             },
             {
-              'faicon': FontAwesomeIcons.history,
+              'iconPath': 'assets/icons/history.svg',
               'title': 'History',
             },
             {
-              'faicon': FontAwesomeIcons.qrcode,
+              'iconPath': 'assets/icons/scanning.svg',
               'title': 'Scanning',
             },
             {
-              'faicon': FontAwesomeIcons.cog,
+              'iconPath': 'assets/icons/settings.svg',
               'title': 'Settings',
             },
           ],
@@ -122,13 +123,21 @@ class MyNavBar extends StatelessWidget{
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FaIcon(
-                        items[index]['faicon'],
-                        color: dashboardController.tabIndex.value == index
-                            ? mainColor
-                            : mainColor1,
-                        size: 16.sp,
+                      SvgPicture.asset(
+                        items[index]['iconPath'],
+                          color: dashboardController.tabIndex.value == index
+                              ? mainColor
+                              : mainColor1,
+                          width: 16.sp,
+                          height: 22.sp,
                       ),
+                      // FaIcon(
+                      //   items[index]['faicon'],
+                      //   color: dashboardController.tabIndex.value == index
+                      //       ? mainColor
+                      //       : mainColor1,
+                      //   size: 16.sp,
+                      // ),
                       // IconButton(
                       //   padding: EdgeInsets.all(0),
                       //   color: dashboardController.tabIndex.value == index
