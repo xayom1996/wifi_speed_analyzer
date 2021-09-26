@@ -9,7 +9,7 @@ import 'package:wifi_speed_analyzer/pages/components/speed_indicator.dart';
 import 'package:wifi_speed_analyzer/theme/color_theme.dart';
 
 class TestRoutes {
-  static const String TestPage = 'history';
+  static const String TestPage = 'test';
   static const String ResultPage = 'result';
 }
 

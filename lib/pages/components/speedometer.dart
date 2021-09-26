@@ -145,7 +145,7 @@ class SpeedometerPainter extends CustomPainter {
         Rect.fromCenter(
           center: center,
           width: 30.w,
-          height: 30.w
+          height: 30.h
         )
       );
 

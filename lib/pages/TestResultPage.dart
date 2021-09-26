@@ -40,6 +40,7 @@ class TestResultPage extends StatelessWidget{
           icon: FaIcon(
             FontAwesomeIcons.chevronLeft,
             color: mainColor,
+            size: 16.sp,
             // #5B5B5B
           ),
         ),
@@ -57,7 +58,7 @@ class TestResultPage extends StatelessWidget{
                 boxShadow: [
                   BoxShadow(
                     color: Color.fromRGBO(0, 0, 0, 0.3),
-                    offset: Offset(12, 22),
+                    offset: Offset(0, 12.h),
                   ),
                 ],
               ),
@@ -83,6 +84,7 @@ class TestResultPage extends StatelessWidget{
                           FaIcon(
                             FontAwesomeIcons.chevronDown,
                             color: mainColor1,
+                            size: 16.sp,
                             // #5B5B5B
                           ),
                         ],
@@ -131,6 +133,7 @@ class TestResultPage extends StatelessWidget{
                           FaIcon(
                             FontAwesomeIcons.chevronUp,
                             color: mainColor1,
+                            size: 16.sp,
                           ),
                         ],
                       ),

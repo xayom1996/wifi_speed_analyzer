@@ -23,6 +23,7 @@ class HistoryController extends GetxController{
   void initDb() async {
     await wifiSpeedProvider.open('wifiSpeed.db');
     wifiSpeeds(await wifiSpeedProvider.getAll());
+    print(await info.getWifiName());
   }
 
   void insertWifiSpeed(double downloadSpeed, double uploadSpeed) async {

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wifi_speed_analyzer/pages/OnBoardingPage.dart';
 import 'package:wifi_speed_analyzer/pages/dashboardPage.dart';
 import 'package:wifi_speed_analyzer/theme/app_theme.dart';
 import 'package:wifi_speed_analyzer/controllers/dashboard_bindings.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         theme: appThemeData[AppTheme.RedDark],
         title: "Wifi",
         initialBinding: DashboardBinding(),
-        home: DashboardPage(),
+        home: OnBoardingPage(),
       ),
     );
   }

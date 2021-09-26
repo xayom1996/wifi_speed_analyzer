@@ -93,6 +93,7 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
             duration: Duration(milliseconds: 3000),
                 child: Speedometer(
                   speed: speed.value,
+                  size: 300.w,
                   // speedRecord: highestVelocity,
                 ),
             ),
@@ -123,6 +124,7 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
                       color: status.value == 'download'
                           ? mainColor
                           : mainColor1,
+                      size: 16.sp,
                         // #5B5B5B
                     ),
                   ],
@@ -134,7 +136,7 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
                     duration: Duration(milliseconds: 300),
                     child: status.value == 'download'
                     ? CustomPaint(
-                        size: Size(100, 150),
+                        size: Size(100.w, 150.h),
                         painter: MyPainter(
                             points: downloadSpeedPoints
                         )
@@ -187,6 +189,7 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
                       color: status.value == 'upload'
                           ? mainColor
                           : mainColor1,
+                      size: 16.sp,
                     ),
                   ],
                 ),
@@ -197,7 +200,7 @@ class _SpeedIndicatorState extends State<SpeedIndicator> {
                     duration: Duration(milliseconds: 300),
                     child: status.value == 'upload'
                     ? CustomPaint(
-                        size: Size(100, 150),
+                        size: Size(100.w, 150.h),
                         painter: MyPainter(
                             points: uploadSpeedPoints
                         )

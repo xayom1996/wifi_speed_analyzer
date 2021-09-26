@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:wifi_speed_analyzer/controllers/settings_controller.dart';
 import 'package:wifi_speed_analyzer/pages/HistoryPage.dart';
 import 'package:wifi_speed_analyzer/pages/ScanningPage.dart';
+import 'package:wifi_speed_analyzer/pages/SettingsPage.dart';
 import 'package:wifi_speed_analyzer/pages/TestPage.dart';
 import 'package:wifi_speed_analyzer/pages/homePage.dart';
 import 'package:wifi_speed_analyzer/pages/playListPage.dart';
@@ -16,8 +18,8 @@ class DashboardController extends GetxController {
     pages = [
       TestNavigator(),
       HistoryNavigator(),
-      Container(),
-      Container(),
+      ScanningNavigator(),
+      SettingsNavigator(),
     ];
     super.onInit();
   }

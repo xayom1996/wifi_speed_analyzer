@@ -90,6 +90,7 @@ class HistoryPage extends StatelessWidget{
             icon: FaIcon(
               FontAwesomeIcons.trash,
               color: Color(0xff4A5967),
+              size: 16.sp,
               // #5B5B5B
             ),
           ),
@@ -137,7 +138,7 @@ class HistoryPage extends StatelessWidget{
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 8,
+                                    height: 8.h,
                                   ),
                                   Text(
                                       DateFormat('dd/MM/yyyy').format(wifiSpeed.createdAt),
@@ -175,7 +176,7 @@ class HistoryPage extends StatelessWidget{
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 8,
+                                    height: 8.h,
                                   ),
                                   Text(
                                       wifiSpeed.downloadSpeed.toStringAsFixed(2),
@@ -213,7 +214,7 @@ class HistoryPage extends StatelessWidget{
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 8,
+                                    height: 8.h,
                                   ),
                                   Text(
                                       wifiSpeed.uploadSpeed.toStringAsFixed(2),
@@ -255,7 +256,15 @@ class HistoryPage extends StatelessWidget{
                               width: MediaQuery.of(context).size.width,
                               child: Align(
                                 alignment: Alignment.centerLeft,
-                                child: Text('WIFI NAME: ${wifiSpeed.isp.toString()}'),
+                                child: Text(
+                                  'WIFI NAME: ${wifiSpeed.isp.toString()}',
+                                  style: GoogleFonts.openSans(
+                                    textStyle: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
                               )
                           ),
                         ),
