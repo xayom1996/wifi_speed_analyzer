@@ -195,6 +195,7 @@ class ExplanationPage extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 60.h),
             for (var img in localImages)
               Column(
                 children: [
@@ -209,11 +210,10 @@ class ExplanationPage extends StatelessWidget{
                   SizedBox(height: 8.h),
                 ],
               ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 30.h),
             Expanded(
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 8.sp),
@@ -228,31 +228,35 @@ class ExplanationPage extends StatelessWidget{
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                  SizedBox(
+                    height: 12.h,
+                  ),
                   Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8.sp),
-                      child: Text(
-                        description,
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.openSans(
-                          textStyle: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xffBDBDBD),
-                          ),
+                    padding: EdgeInsets.symmetric(horizontal: 8.sp),
+                    child: Text(
+                      description,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.openSans(
+                        textStyle: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffBDBDBD),
                         ),
                       ),
+                    ),
                   )
                 ],
               ),
             ),
+            // Expanded(
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ],
