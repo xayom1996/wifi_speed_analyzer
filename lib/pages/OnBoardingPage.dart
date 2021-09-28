@@ -148,11 +148,11 @@ class OnBoardingPage extends StatelessWidget {
     return AnimatedContainer(
         duration: Duration(milliseconds: 100),
         margin: EdgeInsets.only(right: 8.w),
-        height: 8.h,
+        height: 8.w,
         width: 8.w, // current indicator is wider
         decoration: BoxDecoration(
             color: _currentIndex.value != index ? Color(0xffBDBDBD): mainColor,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.w),
         )
     );
   }
@@ -198,9 +198,13 @@ class ExplanationPage extends StatelessWidget{
             for (var img in localImages)
               Column(
                 children: [
-                  SvgPicture.asset(
-                    img,
-                    height: localImages.length == 1 ? 0.3.sh : 0.15.sh,
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SvgPicture.asset(
+                      img,
+                      alignment: Alignment.center,
+                      height: localImages.length == 1 ? 252.h : 128.h,
+                    ),
                   ),
                   SizedBox(height: 8.h),
                 ],
@@ -208,8 +212,8 @@ class ExplanationPage extends StatelessWidget{
             SizedBox(height: 20.h),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 8.sp),
