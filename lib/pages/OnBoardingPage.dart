@@ -56,85 +56,88 @@ class OnBoardingPage extends StatelessWidget {
                         child: Column(
                           children: [
                             Expanded(
-                                child: Container(
-                                    alignment: Alignment.center,
-                                    child: PageView(
-                                        physics: BouncingScrollPhysics(),
-                                        scrollDirection: Axis.horizontal,
-                                        controller: _controller,
-                                        onPageChanged: (value) {
-                                          _currentIndex(value);
-                                        },
-                                        children: explanationPages,
+                              flex: 4,
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  child: PageView(
+                                    physics: BouncingScrollPhysics(),
+                                    scrollDirection: Axis.horizontal,
+                                    controller: _controller,
+                                    onPageChanged: (value) {
+                                      _currentIndex(value);
+                                    },
+                                    children: explanationPages,
+                                  )
+                              ),
+                            ),
+                            SizedBox(
+                              height: 50.h,
+                            ),
+                            // Spacer(),
+                            Obx(() => Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                    // margin: const EdgeInsets.symmetric(vertical: 24),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: List.generate(explanationPages.length,
+                                              (index) => createCircle(index: index)),
                                     )
                                 ),
-                                flex: 4
-                            ),
-                            // SizedBox(
-                            //   height: 50.h,
-                            // ),
-                            Obx(() => Expanded(
-                                flex: 1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                        // margin: const EdgeInsets.symmetric(vertical: 24),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: List.generate(explanationPages.length,
-                                                  (index) => createCircle(index: index)),
-                                        )
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                // Spacer(),
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  padding: EdgeInsets.all(18.sp),
+                                  child: RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.sp),
                                     ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      padding: EdgeInsets.all(8.sp),
-                                      child: RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.sp),
-                                        ),
-                                        padding: EdgeInsets.all(16.sp),
-                                        onPressed: (){
-                                          _controller.nextPage(
-                                              duration: Duration(milliseconds: 200),
-                                              curve: Curves.easeInOut
-                                          );
-                                        },
-                                        color: mainColor,
-                                        child: Text(
-                                          'Next',
-                                          style: GoogleFonts.openSans(
-                                            textStyle: TextStyle(
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                            )),
-                            Obx(() => Expanded(
-                              flex: 1,
-                              child: _currentIndex.value == explanationPages.length - 1
-                                  ? Text(
-                                      'Privacy Policy | Terms of Use \n Restore purchases',
-                                      textAlign: TextAlign.center,
+                                    padding: EdgeInsets.all(16.sp),
+                                    onPressed: (){
+                                      _controller.nextPage(
+                                          duration: Duration(milliseconds: 200),
+                                          curve: Curves.easeInOut
+                                      );
+                                    },
+                                    color: mainColor,
+                                    child: Text(
+                                      'Next',
                                       style: GoogleFonts.openSans(
                                         textStyle: TextStyle(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xffBDBDBD),
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                    )
-                                  : Container()
-                            ))
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Container(
+                                  height: 50.h,
+                                  child: Obx(() => _currentIndex.value == explanationPages.length - 1
+                                      ? Text(
+                                    'Privacy Policy | Terms of Use \n Restore purchases',
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.openSans(
+                                      textStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xffBDBDBD),
+                                      ),
+                                    ),
+                                  )
+                                      : Container()
+                                  ),
+                                )
+                              ],
+                            )),
                           ],
                         ),
                       )
@@ -211,52 +214,41 @@ class ExplanationPage extends StatelessWidget{
                 ],
               ),
             SizedBox(height: 30.h),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8.sp),
-                    child: Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8.sp),
+                  child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 12.h,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8.sp),
-                    child: Text(
-                      description,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.openSans(
-                        textStyle: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xffBDBDBD),
-                        ),
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8.sp),
+                  child: Text(
+                    description,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.openSans(
+                      textStyle: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xffBDBDBD),
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
-            // Expanded(
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ],

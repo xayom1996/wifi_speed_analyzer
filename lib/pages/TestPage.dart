@@ -74,6 +74,7 @@ class TestPage extends StatelessWidget{
         backgroundColor: backgroundColor,
       ),
       body: Container(
+        color: backgroundColor,
         child: Center(
           child: Obx(() => AnimatedSwitcher(
             duration: Duration(milliseconds: 500),

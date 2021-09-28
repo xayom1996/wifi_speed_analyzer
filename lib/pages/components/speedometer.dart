@@ -74,27 +74,6 @@ class SpeedometerPainter extends CustomPainter {
     }
   }
 
-  void _drawMarkers() {
-    paintObject.style = PaintingStyle.fill;
-
-    for (double relativeRotation = 0.15; relativeRotation <= 0.851; relativeRotation += 0.01) {
-      double normalizedDouble = double.parse((relativeRotation - 0.15).toStringAsFixed(2));
-      int normalizedPercentage = (normalizedDouble * 150).toInt();
-      bool isBigMarker = normalizedPercentage % 10 == 0;
-
-      // _drawRotated(
-      //   relativeRotation,
-      //   () => _drawMarker(isBigMarker)
-      // );
-
-      if (isBigMarker)
-        _drawRotated(
-          relativeRotation,
-          () => _drawSpeedScaleText(relativeRotation, normalizedPercentage.toString())
-        );
-    }
-  }
-
   void _drawSpeedIndicator(double relativeRotation, [bool highlight = false]) {
     paintObject.shader = null;
     paintObject.strokeWidth = 2;
@@ -184,52 +163,6 @@ class SpeedometerPainter extends CustomPainter {
     canvas.drawPath(markerPath, paintObject);
   }
 
-  void _drawSpeedScaleText(double rotation, String text) {
-    TextSpan span = new TextSpan(
-      style: new TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Colors.red,
-        fontSize: size.width / 20
-      ),
-      text: text
-    );
-    TextPainter textPainter = TextPainter(
-      text: span,
-      textDirection: TextDirection.ltr,
-      textAlign: TextAlign.center
-    );
-
-    textPainter.layout();
-
-    final textCenter = Offset(
-      center.dx,
-      size.width - (size.width / 5.5) + (textPainter.width / 2)
-    );
-
-    final textTopLeft = Offset(
-      textCenter.dx - (textPainter.width / 2),
-      textCenter.dy - (textPainter.height / 2)
-    );
-
-    canvas.save();
-
-    // Rotate the canvas around the position of the text so that the text is oriented properly
-
-    canvas.translate(
-      textCenter.dx,
-      textCenter.dy
-     );
-    canvas.rotate(-rotation * pi * 2);
-    canvas.translate(
-      -textCenter.dx,
-      -textCenter.dy
-    );
-
-    textPainter.paint(canvas, textTopLeft);
-
-    canvas.restore();
-  }
-
   void _drawSpeed() {
     TextSpan spanSpeed = new TextSpan(
       style: GoogleFonts.openSans(
@@ -306,53 +239,6 @@ class SpeedometerPainter extends CustomPainter {
     _drawRotated(rotation, () {
       canvas.drawPath(needlePath, paintObject);
     });
-  }
-
-  void _drawGhostNeedle() {
-    if (speedRecord == 0.0) {
-      return;
-    }
-
-    double rotation = 0.15 + (speedRecord / 100);
-
-    paintObject
-      ..color = Colors.white.withOpacity(0.5);
-
-    Path needlePath = Path()
-      ..moveTo(center.dx - size.width / 120, center.dy)
-      ..lineTo(center.dx + size.width / 120, center.dy)
-      ..lineTo(center.dx, center.dy + size.width / 3)
-      ..moveTo(center.dx - size.width / 120, center.dy);
-
-    _drawRotated(rotation, () {
-      canvas.drawPath(needlePath, paintObject);
-    });
-  }
-
-  void _drawInnerCircle() {
-    paintObject
-      ..color = Colors.red.withOpacity(0.4)
-      ..strokeWidth = 1.0
-      ..style = PaintingStyle.stroke;
-
-    canvas.drawCircle(
-      size.center(Offset.zero),
-      size.width / 4,
-      paintObject
-    );
-  }
-
-  void _drawOuterCircle() {
-    paintObject
-      ..color = Colors.red
-      ..strokeWidth = 2.5
-      ..style = PaintingStyle.stroke;
-
-    canvas.drawCircle(
-        size.center(Offset.zero),
-        size.width / 2.2,
-        paintObject
-    );
   }
 
   @override

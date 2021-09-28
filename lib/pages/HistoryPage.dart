@@ -81,6 +81,8 @@ class HistoryPage extends StatelessWidget{
                   context: context,
                   builder: (BuildContext context) =>
                       CustomDialog(
+                        title: 'Clear history',
+                        description: 'Are you sure you want to clear history?',
                         action: (){
                           historyController.deleteAll();
                         },

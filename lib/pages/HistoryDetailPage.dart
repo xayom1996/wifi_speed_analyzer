@@ -55,6 +55,8 @@ class HistoryDetailPage extends StatelessWidget{
                   context: context,
                   builder: (BuildContext context) =>
                       CustomDialog(
+                        title: 'Delete result',
+                        description: 'Are you sure you want to delete  this result?',
                         action: (){
                           historyController.delete(wifiSpeed);
                           onExit();

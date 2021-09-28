@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,11 +8,64 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomDialog extends StatelessWidget{
   final GestureTapCallback action;
+  final String title;
+  final String description;
 
-  const CustomDialog({Key key, this.action}) : super(key: key);
+  const CustomDialog({Key key, this.action, this.title, this.description}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return CupertinoAlertDialog(
+      title: Column(
+        children: <Widget>[
+          Text(
+            title,
+            style: GoogleFonts.openSans(
+              textStyle: TextStyle(
+                fontSize: 17.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ],
+      ),
+      content: Text(
+        description,
+        style: GoogleFonts.openSans(
+          textStyle: TextStyle(
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
+      actions: <Widget>[
+        CupertinoDialogAction(
+          child: Text(
+            "No",
+            style: TextStyle(
+              fontSize: 17.sp,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        CupertinoDialogAction(
+          child: Text(
+            "Yes",
+            style: TextStyle(
+              fontSize: 17.sp,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          onPressed: () {
+            action();
+            Get.back();
+          },
+        ),
+      ],
+    );
     return Center(
       child: Container(
         height: 200.h,
